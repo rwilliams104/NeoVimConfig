@@ -1,6 +1,3 @@
--- Basic settings
-vim.opt.number = true
-vim.opt.termguicolors = true
 vim.opt.background = "dark"
 
 -- Add shift arrow to be quick 20 line jumps
@@ -24,19 +21,22 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- Install and configure Gruvbox
+-- Install and configure Everforest
 require("lazy").setup({
   {
-    "ellisonleao/gruvbox.nvim",
+    "neanias/everforest-nvim",
+    version = false,
     priority = 1000,
     lazy = false,
     opts = {
-      contrast = "hard",
-      terminal_colors = true,
+      background = "hard",
+      transparent_background_level = 0,
+      italics = true,
     },
     config = function(_, opts)
-      require("gruvbox").setup(opts)
-      vim.cmd.colorscheme("gruvbox")
+      require("everforest").setup(opts)
+      vim.cmd.colorscheme("everforest")
     end,
   },
 })
+
