@@ -1,4 +1,5 @@
 vim.opt.background = "dark"
+vim.opt.number = true
 
 -- Add shift arrow to be quick 20 line jumps
 vim.keymap.set("n", "<S-Up>", "20k")
@@ -21,21 +22,15 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- Install and configure Everforest
+-- Install and configure Ashen
 require("lazy").setup({
   {
-    "neanias/everforest-nvim",
-    version = false,
-    priority = 1000,
+    "ficcdaf/ashen.nvim",
     lazy = false,
-    opts = {
-      background = "hard",
-      transparent_background_level = 0,
-      italics = true,
-    },
-    config = function(_, opts)
-      require("everforest").setup(opts)
-      vim.cmd.colorscheme("everforest")
+    priority = 1000,
+    config = function()
+      require("ashen").setup({})
+      vim.cmd.colorscheme("ashen")
     end,
   },
 })
