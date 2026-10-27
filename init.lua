@@ -1,5 +1,7 @@
+
 vim.opt.background = "dark"
 vim.opt.number = true
+vim.opt.termguicolors = true
 
 -- Add shift arrow to be quick 20 line jumps
 vim.keymap.set("n", "<S-Up>", "20k")
@@ -22,16 +24,9 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- Install and configure Ashen
-require("lazy").setup({
-  {
-    "ficcdaf/ashen.nvim",
-    lazy = false,
-    priority = 1000,
-    config = function()
-      require("ashen").setup({})
-      vim.cmd.colorscheme("ashen")
-    end,
-  },
-})
+-- Plugin configuration
+require("lazy").setup({})
+
+-- Load Gemstone
+vim.cmd.colorscheme("gemstone")
 
