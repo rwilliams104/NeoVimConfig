@@ -35,6 +35,22 @@ require("lazy").setup({
   },
 })
 
+
+-- Automatically enable Tree-sitter syntax highlighting
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "cpp", "c", "ruby", "lua" },
+  callback = function(args)
+    local ok = pcall(vim.treesitter.start, args.buf)
+
+    if not ok then
+      vim.notify(
+        "Tree-sitter parser unavailable for " .. vim.bo[args.buf].filetype,
+        vim.log.levels.WARN
+      )
+    end
+  end,
+})
+
 -- Enable Tree-sitter highlighting for supported file types
 vim.api.nvim_create_autocmd("FileType", {
   pattern = { "cpp", "c", "ruby", "lua" },
