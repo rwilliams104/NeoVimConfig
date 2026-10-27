@@ -24,9 +24,24 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
--- Plugin configuration
-require("lazy").setup({})
+require("lazy").setup({
+  {
+    "nvim-treesitter/nvim-treesitter",
+    lazy = false,
+    build = ":TSUpdate",
+    dependencies = {
+      "neovim-treesitter/treesitter-parser-registry",
+    },
+  },
+})
+
+-- Enable Tree-sitter highlighting for supported file types
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = { "cpp", "c", "ruby", "lua" },
+  callback = function(args)
+    pcall(vim.treesitter.start, args.buf)
+  end,
+})
 
 -- Load Gemstone
 vim.cmd.colorscheme("gemstone")
-
